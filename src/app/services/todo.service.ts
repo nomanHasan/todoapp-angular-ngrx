@@ -1,6 +1,6 @@
 import ToDo from '../models/todo.model';
 import { Observable } from 'rxjs/Rx';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {Response} from '@angular/http';
 import { Injectable } from '@angular/core';
 
@@ -18,6 +18,10 @@ export class TodoService {
   ) { }
 
 
+  createTodo(todo: ToDo): Observable<any>{
+    return this.http.post(`${this.todoUrl}`, todo);
+  }
+
   getToDos(): Observable<ToDo[]>{
     return this.http.get(this.todoUrl)
     .map(res  => {
@@ -25,8 +29,13 @@ export class TodoService {
     })
   }
 
+  editTodo(todo:ToDo){
+    let editUrl = `${this.todoUrl}`
+    return this.http.put(editUrl, todo);
+  }
+
   deleteTodo(id:string):any{
-    let deleteUrl = `${this.todoUrl}/id`
+    let deleteUrl = `${this.todoUrl}/${id}`
     return this.http.delete(deleteUrl)
     .map(res  => {
       return res;
