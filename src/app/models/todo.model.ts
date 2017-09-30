@@ -1,4 +1,4 @@
-class ToDo {
+export default class ToDo {
     _id:string;
     title: string;
     description: string;
@@ -13,5 +13,3 @@ class ToDo {
         this.status = ""
     }
 }
-
-export default ToDo;

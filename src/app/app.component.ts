@@ -1,6 +1,6 @@
 import { Response } from '@angular/http';
 import { TodoService } from './services/todo.service';
-import ToDo from './models/todo.model';
+import Todo from './models/todo.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,10 +14,10 @@ export class AppComponent implements OnInit {
     private todoService: TodoService
   ) { }
 
-  public newTodo: ToDo = new ToDo()
+  public newTodo: Todo = new Todo()
 
-  todosList: ToDo[];
-  editTodos: ToDo[] = [];
+  todosList: Todo[];
+  editTodos: Todo[] = [];
 
   ngOnInit(): void {
     this.todoService.getToDos()
@@ -32,11 +32,11 @@ export class AppComponent implements OnInit {
     this.todoService.createTodo(this.newTodo)
       .subscribe((res) => {
         this.todosList.push(res.data)
-        this.newTodo = new ToDo()
+        this.newTodo = new Todo()
       })
   }
 
-  editTodo(todo: ToDo) {
+  editTodo(todo: Todo) {
     console.log(todo)
     if(this.todosList.includes(todo)){
       if(!this.editTodos.includes(todo)){
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  doneTodo(todo:ToDo){
+  doneTodo(todo:Todo){
     todo.status = 'Done'
     this.todoService.editTodo(todo).subscribe(res => {
       console.log('Update Succesful')
@@ -63,13 +63,13 @@ export class AppComponent implements OnInit {
     })
   }
 
-  submitTodo(event, todo:ToDo){
+  submitTodo(event, todo:Todo){
     if(event.keyCode ==13){
       this.editTodo(todo)
     }
   }
 
-  deleteTodo(todo: ToDo) {
+  deleteTodo(todo: Todo) {
     this.todoService.deleteTodo(todo._id).subscribe(res => {
       this.todosList.splice(this.todosList.indexOf(todo), 1);
     })
