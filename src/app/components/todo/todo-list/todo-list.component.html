@@ -1,0 +1,14 @@
+<p>
+  todo-list works!
+</p>
+
+
+<div *ngIf="todos$ | async as todos">
+<span *ngFor="let todo of todos">
+  {{todo.title}}
+  {{todo.description}}
+  {{todo.date | date}}
+  {{todo.status}}
+</span>
+
+</div>

@@ -19,7 +19,7 @@ export class GetTodo implements Action {
 }
 
 export class GetTodos implements Action {
-    readonly type = GET_TODO;
+    readonly type = GET_TODOS;
 }
 
 export class UpdateTodo implements Action {
