@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
 import { TodoDetailsComponent } from './components/todo/todo-details/todo-details.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './store/todo/todo.effects';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,11 @@ import { TodoDetailsComponent } from './components/todo/todo-details/todo-detail
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
-    StoreModule.forRoot({todo: TodoReducer})
+    StoreModule.forRoot({todo: TodoReducer}),
+    EffectsModule.forRoot([TodoEffects])
   ],
   providers: [
-    TodoService
+    TodoService,
   ],
   bootstrap: [AppComponent]
 })

@@ -21,6 +21,8 @@ export class TodoListComponent implements OnInit {
   ) { }
 
 
+  editTodos = [];
+
   todos$: Observable<Todo[]>;
 
   ngOnInit() {

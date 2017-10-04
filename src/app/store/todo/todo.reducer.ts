@@ -1,7 +1,3 @@
-import { adapter } from './todo.entity';
-
-import {EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity';
-
 import Todo from '../../models/todo.model';
 
 import * as TodoActions from './todo.action';
@@ -29,9 +25,14 @@ const defaultState: Todo[] = [{
 // adapter.getInitialState()
 
 export function TodoReducer(state = defaultState, action:Action){
+    console.log(state, action);
+    
     switch(action.type){
         case TodoActions.GET_TODOS: {
             return state;
+        }
+        case TodoActions.GET_TODOS_SUCCESS: {
+            return action.payload;
         }
         default: {
             return state;
