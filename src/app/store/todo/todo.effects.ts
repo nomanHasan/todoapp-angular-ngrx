@@ -17,6 +17,14 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class TodoEffects {
+  
+  constructor(
+    private http: HttpClient,
+    private actions$: Actions,
+    private todoService: TodoService
+  ) {}  
+
+
   @Effect() GetTodos$: Observable<Action> = this.actions$.ofType<TodoActions.GetTodos>(TodoActions.GET_TODOS)
     .mergeMap(action =>
       this.http.get(environment.client.base_url+'/api/todos')
@@ -24,9 +32,14 @@ export class TodoEffects {
         .catch(() => of({ type: 'TODO_GET_FAILED' }))
     );
 
-  constructor(
-    private http: HttpClient,
-    private actions$: Actions,
-    private todoService: TodoService
-  ) {}      
+  @Effect() createTodo$: Observable<Action> = this.actions$.ofType<TodoActions.CreateTodo>(TodoActions.CREATE_TODO)
+    .mergeMap(action =>
+      this.http.post(environment.client.base_url+'/api/todos', action.payload)
+        .map((data:Response) => {
+          
+          return new TodoActions.CreateTodoSuccess({...data["data"], loading: false});
+        })
+        .catch(() => of({ type: 'TODO_GET_FAILED' }))
+    );
+    
 }

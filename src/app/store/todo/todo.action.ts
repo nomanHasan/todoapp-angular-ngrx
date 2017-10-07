@@ -4,6 +4,9 @@ import Todo from '../../models/todo.model';
 import {Action} from '@ngrx/store';
 
 export const CREATE_TODO = '[Todo] CREATE_TODO';
+export const CREATE_TODO_SUCCESS = '[Todo] CREATE_TODO_SUCCESS';
+export const CREATE_TODO_ERROR = '[Todo] CREATE_TODO_ERROR';
+
 export const GET_TODO = '[Todo] GET_TODO';
 export const UPDATE_TODO = '[Todo] UPDATE_TODO';
 export const DELETE_TODO = '[Todo] DELETE_TODO';
@@ -13,31 +16,45 @@ export const GET_TODO_ERROR = "[Todo] GET_TODO_ERROR"
 
 export const GET_TODOS = '[Todo] GET_TODOS';
 export const GET_TODOS_SUCCESS = '[Todo] GET_TODOS_SUCCESS';
+export const GET_TODOS_ERROR = '[Todo] GET_TODOS_ERROR';
 
 
 
-//Action of Collection of Items
+//Actions for Getting  Todos
 
 export class GetTodos implements Action {
     readonly type = GET_TODOS;
 }
-
 
 export class GetTodosSuccess implements Action {
     readonly type = GET_TODOS_SUCCESS;
 
     constructor(public payload: TodoState[]){};
 }
+export class GetTodosError implements Action {
+    readonly type = GET_TODOS_ERROR;
+}
 
 
 
-// Action on Single Item
+// Action for Creating TOdos
 
 export class CreateTodo implements Action {
     readonly type = CREATE_TODO;
 
     constructor(public payload: Todo){}
 }
+export class CreateTodoSuccess implements Action {
+    readonly type = CREATE_TODO_SUCCESS;
+
+    constructor(public payload: TodoState){}
+}
+export class CreateTodoError implements Action {
+    readonly type = CREATE_TODO_ERROR;
+}
+
+
+
 
 export class GetTodo implements Action {
     readonly type = GET_TODO;
@@ -69,4 +86,8 @@ export class DeleteTodo implements Action {
 
 
 
-export type All = CreateTodo | GetTodo | UpdateTodo | DeleteTodo |  GetTodoSuccess | GetTodoError | GetTodos | GetTodosSuccess;
+export type All = 
+GetTodo | UpdateTodo | DeleteTodo | 
+GetTodosSuccess | GetTodosError | GetTodos |
+CreateTodo | CreateTodoSuccess | 
+CreateTodoError ;
