@@ -1,12 +1,17 @@
+import { TodoListState, TodoState } from '../../../store/todo/todo.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 import Todo from '../../../models/todo.model';
 import { Component, OnInit } from '@angular/core';
 
-import * as TodoAction from '../../../store/todo/todo.action'
+import * as TodoAction from '../../../store/todo/todo.action';
 
-interface AppState{
-  todo: Todo[]
+
+export interface AppState{
+  todos: TodoState[];
+  loaded: boolean;
+  loading: boolean;
+  pending: number;
 }
 
 @Component({
@@ -23,12 +28,19 @@ export class TodoListComponent implements OnInit {
 
   editTodos = [];
 
-  todos$: Observable<Todo[]>;
+  todoState$: Observable<TodoState[]>;
+
 
   ngOnInit() {
-    this.todos$ = this.store.select('todo');
+    this.todoState$ = this.store.select('todos');
     this.store.dispatch(new TodoAction.GetTodos());
-    console.log(this.todos$, this.store)
+    console.log(this.todoState$, this.store)
+
+  }
+
+  onCreate(todo){
+    console.log(todo)
+    this.store.dispatch(new TodoAction.CreateTodo(todo));
   }
 
 }

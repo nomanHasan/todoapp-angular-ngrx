@@ -1,0 +1,22 @@
+.options{
+    display: flex;
+    flex-direction: row;
+
+    button{
+        flex:1;
+        margin: 5px;
+    }
+}
+
+:host{
+    margin: 10px;
+}
+.done{
+    background: green;
+}
+.selected{
+    background: #004700;
+}
+.loading{
+    background: #CA6E6E;
+}

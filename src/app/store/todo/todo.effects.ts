@@ -1,3 +1,6 @@
+import { TodoState } from './todo.state';
+import { TodoService } from '../../services/todo.service';
+import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
@@ -8,18 +11,16 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 
-import * as TodoAction from './todo.action'
-import Todo from '../../models/todo.model';
+import * as TodoActions from './todo.action';
+
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { TodoService } from '../../services/todo.service';
 
 @Injectable()
 export class TodoEffects {
-  @Effect() GetTodos$: Observable<Action> = this.actions$.ofType<TodoAction.GetTodos>(TodoAction.GET_TODOS)
+  @Effect() GetTodos$: Observable<Action> = this.actions$.ofType<TodoActions.GetTodos>(TodoActions.GET_TODOS)
     .mergeMap(action =>
       this.http.get(environment.client.base_url+'/api/todos')
-        .map((data:Response) => { console.log(data) ; return new TodoAction.GetTodoSuccess(data["data"]["docs"] as Todo[]);} )
+        .map((data:Response) => { console.log(data) ; return new TodoActions.GetTodosSuccess(data["data"]["docs"] as TodoState[]);} )
         .catch(() => of({ type: 'TODO_GET_FAILED' }))
     );
 

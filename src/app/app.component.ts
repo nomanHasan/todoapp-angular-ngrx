@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
   editTodos: Todo[] = [];
 
   ngOnInit(): void {
-    this.todoService.getToDos()
-      .subscribe(todos => {
-        this.todosList = todos
-        console.log(todos)
-      })
+    // this.todoService.getToDos()
+    //   .subscribe(todos => {
+    //     this.todosList = todos
+    //     console.log(todos)
+    //   })
   }
 
 

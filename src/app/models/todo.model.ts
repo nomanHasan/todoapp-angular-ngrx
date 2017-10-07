@@ -12,4 +12,14 @@ export default class Todo {
         this.date = new Date()
         this.status = ""
     }
+
+    static generateMockTodo() : Todo {
+        return {
+            _id: "new",
+            title: "",
+            description: "",
+            date: new Date(),
+            status: ""
+        }
+    }
 }
