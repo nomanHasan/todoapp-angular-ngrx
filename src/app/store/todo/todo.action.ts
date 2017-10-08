@@ -9,7 +9,6 @@ export const CREATE_TODO_ERROR = '[Todo] CREATE_TODO_ERROR';
 
 export const GET_TODO = '[Todo] GET_TODO';
 export const UPDATE_TODO = '[Todo] UPDATE_TODO';
-export const DELETE_TODO = '[Todo] DELETE_TODO';
 export const GET_TODO_SUCCESS = "[Todo] GET_TODO_SUCCESS"
 export const GET_TODO_ERROR = "[Todo] GET_TODO_ERROR"
 
@@ -17,6 +16,11 @@ export const GET_TODO_ERROR = "[Todo] GET_TODO_ERROR"
 export const GET_TODOS = '[Todo] GET_TODOS';
 export const GET_TODOS_SUCCESS = '[Todo] GET_TODOS_SUCCESS';
 export const GET_TODOS_ERROR = '[Todo] GET_TODOS_ERROR';
+
+
+export const DELETE_TODO = '[Todo] DELETE_TODO';
+export const DELETE_TODO_SUCCESS = '[Todo] DELETE_TODO_SUCCESS';
+export const DELETE_TODO_ERROR = '[Todo] DELETE_TODO_ERROR';
 
 
 
@@ -81,6 +85,18 @@ export class UpdateTodo implements Action {
 
 export class DeleteTodo implements Action {
     readonly type = DELETE_TODO;
+
+    constructor(public payload: TodoState){}
+}
+export class DeleteTodoSuccess implements Action {
+    readonly type = DELETE_TODO_SUCCESS;
+
+    constructor(public payload: TodoState){}
+}
+export class DeleteTodoError implements Action {
+    readonly type = DELETE_TODO_ERROR;
+
+    constructor(public payload: TodoState){}
 }
 
 

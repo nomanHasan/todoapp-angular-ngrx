@@ -20,3 +20,14 @@
 .loading{
     background: #CA6E6E;
 }
+.edited{
+    background: #D570FD;
+}
+
+div{
+    p{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

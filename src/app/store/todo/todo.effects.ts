@@ -41,5 +41,14 @@ export class TodoEffects {
         })
         .catch(() => of({ type: 'TODO_GET_FAILED' }))
     );
+  @Effect() deleteTodo$: Observable<Action> = this.actions$.ofType<TodoActions.DeleteTodo>(TodoActions.DELETE_TODO)
+    .mergeMap(action =>
+      this.http.post(environment.client.base_url+'/api/todos', action.payload)
+        .map((data:Response) => {
+          
+          return new TodoActions.CreateTodoSuccess({...data["data"], loading: false});
+        })
+        .catch(() => of({ type: 'TODO_GET_FAILED' }))
+    );
     
 }

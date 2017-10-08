@@ -43,4 +43,8 @@ export class TodoListComponent implements OnInit {
     this.store.dispatch(new TodoAction.CreateTodo(todo));
   }
 
+
+  onDelete(todo){
+    this.store.dispatch(new TodoAction.DeleteTodo(todo))
+  }
 }

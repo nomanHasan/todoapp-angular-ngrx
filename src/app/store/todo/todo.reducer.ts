@@ -32,9 +32,17 @@ export function TodoReducer(state = defaultState, action:Action){
             return newState
         }
         case TodoActions.CREATE_TODO_SUCCESS: {
+            console.log(defaultTodoStates)
             let newState = state
-
-            newState.todos =  [ ...state.todos.filter(t => t._id != "new"), action.payload, defaultTodoStates[0]]
+            newState.todos =  [ ...state.todos.filter(t => t._id != "new"), {
+                ...action.payload,
+                edited: true
+            }, {
+                ...Todo.generateMockTodo(),
+                ...initializeTodoState()
+            }]
+            console.log(newState);
+            
             return newState
         }
         case TodoActions.GET_TODOS: {
@@ -49,6 +57,13 @@ export function TodoReducer(state = defaultState, action:Action){
             console.log(newState)
             return newState;
         }
+
+        case TodoActions.DELETE_TODO: {
+            let newState =  {...state, ...state.todos.splice(state.todos.indexOf(action.payload),1)};
+            console.log(newState);
+            return newState
+        }
+
         default: {
             return state;
         }

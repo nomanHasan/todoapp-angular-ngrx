@@ -8,7 +8,7 @@
   <ng-template #todoList >
 
     <ng-container *ngFor="let todo of todoState.todos">
-        <app-todo-list-item [todo]="todo" (created)="onCreate($event)" ></app-todo-list-item>
+        <app-todo-list-item [todo]="todo" (created)="onCreate($event)" (deleted)="onDelete($event)" > </app-todo-list-item>
     </ng-container>
   </ng-template>
 </div>

@@ -11,6 +11,7 @@ export class TodoListItemComponent implements OnInit {
   @Input() todo;
 
   @Output() created = new EventEmitter<any>();
+  @Output() deleted = new EventEmitter<any>();
 
   constructor() { }
 
