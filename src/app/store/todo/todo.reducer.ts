@@ -63,6 +63,34 @@ export function TodoReducer(state = defaultState, action:Action){
             console.log(newState);
             return newState
         }
+        case TodoActions.DELETE_TODO_SUCCESS: {
+            return state
+        }
+        case TodoActions.DELETE_TODO_ERROR: {
+            let newState =  state;
+            newState.todos.push(action.payload)
+            return newState
+        }
+
+        case TodoActions.UPDATE_TODO: {
+            let newState = state;
+            newState.todos.map(t => {
+                if(t._id == action.payload._id){
+                    t.loading = true;
+                }
+            })
+            return newState;
+        }
+
+        case TodoActions.UPDATE_TODO_SUCCESS: {
+            let newState = state;
+            newState.todos.map(t => {
+                if(t._id == action.payload._id){
+                    t.loading = false;
+                }
+            })
+            return {...state, ...newState};
+        }
 
         default: {
             return state;

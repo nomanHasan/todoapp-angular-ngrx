@@ -12,6 +12,7 @@ export class TodoListItemComponent implements OnInit {
 
   @Output() created = new EventEmitter<any>();
   @Output() deleted = new EventEmitter<any>();
+  @Output() edited = new EventEmitter<any>();
 
   constructor() { }
 
@@ -22,5 +23,12 @@ export class TodoListItemComponent implements OnInit {
   createTodo(todo){
     console.log(todo)
     this.created.emit(todo)
+  }
+
+
+  editTodo(todo){
+    this.todo.editing = !this.todo.editing;
+
+    this.edited.emit(todo)
   }
 }

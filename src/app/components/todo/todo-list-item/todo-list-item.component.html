@@ -7,7 +7,7 @@
   [class.edited] = "todo.edited"
   >
   <div class="row">
-    <ng-container *ngIf="!todo.create">
+    <ng-container *ngIf="!todo.create && !todo.editing">
 
             <div class="col-md-3">
       
@@ -29,7 +29,7 @@
             
     </ng-container>
 
-    <ng-container *ngIf="todo.create">
+    <ng-container *ngIf="todo.create || todo.editing">
             <div class="col-md-3">
               <input type="text" name="title" id="title" [(ngModel)]="todo.title">
             </div>
@@ -47,7 +47,7 @@
 
 
       <div class="col-md-3 options" >
-        <ng-container *ngIf="!todo.create">
+        <ng-container *ngIf="!todo.create && !todo.editing">
             <button class="btn btn-success" (click)="doneTodo(todo)">
                 <i  class="fa fa-check"></i>
               </button>
@@ -62,6 +62,13 @@
             <button class="btn btn-success" (click)="createTodo(todo)">
                 Create
               </button>
+        </ng-container>
+
+        <ng-container *ngIf="todo.editing">
+
+          <button class="btn btn-primary" (click)="editTodo(todo)">
+                  Submit
+                </button>
         </ng-container>
       </div>
     </div>
