@@ -53,7 +53,7 @@ export class TodoEffects {
     .mergeMap(action =>
       this.http.put(environment.client.base_url+'/api/todos/', action.payload)
         .map((data:Response) => {
-          return new TodoActions.DeleteTodoSuccess({...action.payload, loading: false});
+          return new TodoActions.UpdateTodoSuccess({...action.payload, loading: false, editing:false});
         })
         .catch(() => of(new TodoActions.DeleteTodoError(action.payload)))
     );

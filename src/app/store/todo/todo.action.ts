@@ -121,7 +121,6 @@ export class DeleteTodoError implements Action {
 
 export type All = GetTodo | 
 UpdateTodo | UpdateTodoSuccess | UpdateTodoError |
-DeleteTodo | 
 GetTodos | GetTodosSuccess | GetTodosError | 
 CreateTodo | CreateTodoSuccess | CreateTodoError |
 DeleteTodo | DeleteTodoSuccess | DeleteTodoError ;

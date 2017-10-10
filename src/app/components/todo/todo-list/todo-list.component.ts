@@ -2,7 +2,7 @@ import { TodoListState, TodoState } from '../../../store/todo/todo.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 import Todo from '../../../models/todo.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import * as TodoAction from '../../../store/todo/todo.action';
 

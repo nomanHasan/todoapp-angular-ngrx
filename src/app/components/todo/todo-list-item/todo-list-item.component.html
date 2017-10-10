@@ -5,7 +5,11 @@
   [class.loading]="todo.loading"
   [class.editing] = "todo.editing"
   [class.edited] = "todo.edited"
+  [class.error] = "todo.error"
   >
+
+  <pre>{{todo| json}}</pre>
+
   <div class="row">
     <ng-container *ngIf="!todo.create && !todo.editing">
 
@@ -66,7 +70,7 @@
 
         <ng-container *ngIf="todo.editing">
 
-          <button class="btn btn-primary" (click)="editTodo(todo)">
+          <button class="btn btn-primary" (click)="editTodoSubmit(todo)">
                   Submit
                 </button>
         </ng-container>

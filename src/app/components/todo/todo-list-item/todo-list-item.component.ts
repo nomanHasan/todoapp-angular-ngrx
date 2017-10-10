@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-todo-list-item',
   templateUrl: './todo-list-item.component.html',
-  styleUrls: ['./todo-list-item.component.scss']
+  styleUrls: ['./todo-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListItemComponent implements OnInit {
 
@@ -28,7 +29,11 @@ export class TodoListItemComponent implements OnInit {
 
   editTodo(todo){
     this.todo.editing = !this.todo.editing;
+  }
 
+
+  editTodoSubmit(todo){
     this.edited.emit(todo)
   }
+
 }

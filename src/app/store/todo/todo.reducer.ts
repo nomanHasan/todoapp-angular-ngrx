@@ -83,17 +83,52 @@ export function TodoReducer(state = defaultState, action:Action){
         }
 
         case TodoActions.UPDATE_TODO_SUCCESS: {
+            console.log(modifyTodoState(state, action.payload, {}));
+            return modifyTodoState(state, action.payload, {loading: false, editing:false})
+
+            // let newState = state;
+            // newState.todos.map(t => {
+            //     if(t._id == action.payload._id){
+            //         t.loading = false;
+            //     }
+            // })
+            // return {...state, ...newState};
+        }
+
+        case TodoActions.UPDATE_TODO_ERROR: {
             let newState = state;
+
             newState.todos.map(t => {
                 if(t._id == action.payload._id){
-                    t.loading = false;
+                    t.error = true;
                 }
             })
+
             return {...state, ...newState};
+
         }
 
         default: {
             return state;
         }
     }
+}
+
+function modifyTodoState(state, todo:TodoState, modifications):TodoListState{
+    console.log({...state, ...state.todos.map(t => {
+        if(t._id == todo._id){
+            console.log({...t, ...todo, ...modifications});
+            return {...t, ...todo, ...modifications}
+        }else{
+            return t;
+        }
+    })});
+    return {...state, ...state.todos.map(t => {
+        if(t._id == todo._id){
+            console.log({...t, ...todo, ...modifications});
+            return {...t, ...todo, ...modifications}
+        }else{
+            return t;
+        }
+    })}
 }
