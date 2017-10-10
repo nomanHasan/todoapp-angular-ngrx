@@ -76,8 +76,6 @@ export class GetTodoSuccess implements Action {
 
 export class GetTodoError implements Action {
     readonly type = GET_TODO_ERROR;
-
-    constructor(public payload: Todo){};
 }
 
 
@@ -89,7 +87,9 @@ export class UpdateTodo implements Action {
 export class UpdateTodoSuccess implements Action {
     readonly type = UPDATE_TODO_SUCCESS;
 
-    constructor(public payload: TodoState){}
+    constructor(public payload: TodoState){
+        console.log(this.payload)
+    }
 }
 export class UpdateTodoError implements Action {
     readonly type = UPDATE_TODO_ERROR;
