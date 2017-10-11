@@ -1,14 +1,13 @@
 <div class="card">
   <div class="card-body" 
   *ngIf="todo"
+  [class.done]="todo.status == 'done'"
   [class.selected]="todo.selected"
   [class.loading]="todo.loading"
   [class.editing] = "todo.editing"
   [class.edited] = "todo.edited"
   [class.error] = "todo.error"
   >
-
-  <!-- <pre>{{todo| json}}</pre> -->
 
   <div class="row">
     <ng-container *ngIf="!todo.create && !todo.editing">
@@ -52,7 +51,7 @@
 
       <div class="col-md-3 options" >
         <ng-container *ngIf="!todo.create && !todo.editing">
-            <button class="btn btn-success" (click)="doneTodo(todo)">
+            <button class="btn btn-success" *ngIf="todo.status != 'done'" (click)="completeTodo(todo)">
                 <i  class="fa fa-check"></i>
               </button>
           <button class="btn btn-primary" (click)="editTodo(todo)">

@@ -44,6 +44,9 @@ export const DELETE_TODO_SUCCESS = '[Todo] DELETE_TODO_SUCCESS';
 export const DELETE_TODO_ERROR = '[Todo] DELETE_TODO_ERROR'; 
 
 
+export const COMPLETE_TODO = 'COMPLETE_TODO'
+
+
 
 
 //Actions for Getting  Todos
@@ -124,6 +127,17 @@ export class GetTodoError implements Action {
 
 
 
+
+export class CompleteTodo implements Action {
+    readonly type = COMPLETE_TODO; 
+
+
+    constructor(public payload: TodoState){} 
+ 
+
+} 
+
+
 export class UpdateTodo implements Action {
     readonly type = UPDATE_TODO; 
 
@@ -132,6 +146,7 @@ export class UpdateTodo implements Action {
  
 
 } 
+
  
 
 export class UpdateTodoSuccess implements Action {
@@ -188,9 +203,9 @@ export class DeleteTodoError implements Action {
 
 
 
-export type All = GetTodo | 
+export type All = GetTodo | GetTodoSuccess | GetTodoError |
 UpdateTodo | UpdateTodoSuccess | UpdateTodoError |
 GetTodos | GetTodosSuccess | GetTodosError | 
 CreateTodo | CreateTodoSuccess | CreateTodoError |
-DeleteTodo | DeleteTodoSuccess | DeleteTodoError ; 
-
+DeleteTodo | DeleteTodoSuccess | DeleteTodoError |
+CompleteTodo ;

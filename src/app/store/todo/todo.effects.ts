@@ -1,5 +1,4 @@
 import { TodoState } from './todo.state';
-import { TodoService } from '../../services/todo.service';
 import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -20,8 +19,7 @@ export class TodoEffects {
 
   constructor(
     private http: HttpClient,
-    private actions$: Actions,
-    private todoService: TodoService
+    private actions$: Actions
   ) { }
 
 
