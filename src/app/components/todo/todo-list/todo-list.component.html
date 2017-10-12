@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-<div class="todos" *ngIf="todoState$ | async as todoState">
-  <ng-container *ngIf="todoState.loading;else todoList" >
+<div class="todos" *ngIf="todoListState$ | async as todoListState">
+  <ng-container *ngIf="todoListState.loading;else todoList" >
     <div class="loader"></div>
   </ng-container>
   <ng-template #todoList >
 
-    <ng-container *ngFor="let todo of todoState.todos">
+    <ng-container *ngFor="let todo of todoListState.todos">
         <app-todo-list-item [todo]="todo" (created)="onCreate($event)" (deleted)="onDelete($event)" (completed)="completeTodo($event)" (edited)="onEdit($event)" > </app-todo-list-item>
     </ng-container>
   </ng-template>

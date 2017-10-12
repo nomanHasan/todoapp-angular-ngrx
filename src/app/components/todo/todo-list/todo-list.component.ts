@@ -15,13 +15,7 @@ import * as TodoAction from '../../../store/todo/todo.action';
 
 export interface AppState {
 
-  todos: TodoState[];
-
-  loaded: boolean;
-
-  loading: boolean;
-
-  pending: number;
+  todos: TodoListState;
 
 }
 
@@ -35,22 +29,22 @@ export class TodoListComponent implements OnInit {
 
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<TodoListState>
   ) {
  }
 
 
-  todoState$: Observable<TodoState[]>;
+  todoListState$: Observable<TodoState[]>;
 
 
 
   ngOnInit() {
 
-    this.todoState$ = this.store.select(state => state.todos);
+    this.todoListState$ = this.store.select(state => state.todos);
 
     this.store.dispatch(new TodoAction.GetTodos());
 
-    console.log(this.todoState$, this.store);
+    console.log(this.todoListState$, this.store);
 
 
   }
